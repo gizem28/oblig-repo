@@ -6,17 +6,20 @@
     <title>Bestilling av kinobilletter</title>
 </head>
 <body>
-<!-- Form başlangıcı -->
+<!-- Skjema start -->
 <form id="billettForm" style="border:2px solid dodgerblue; padding: 20px; margin: 20px; width: 400px;">
     <h1>Bestilling av kinobilletter</h1>
 
-    <!-- Film seçimi -->
+    <!-- Filmvalg -->
     <label for="filmNames"
            style="display: inline-block; width: 100px;  margin-right: 10px;">Velg film:</label>
     <select name="filmNames" id="filmNames" style="width: 170px;">
         <option value="" disabled selected>Velg en film...</option>
-        <option value="Konvoi">Konvoi</option>
-        <option value="Paw Patrol">Paw Patrol</option>
+        <option value="Shadow Intrigue">Shadow Intrigue</option>
+        <option value="The Last Expedition">The Last Expedition</option>
+        <option value="Echoes of Tomorrow">Echoes of Tomorrow </option>
+        <option value="Cipher of Souls">Cipher of Souls</option>
+
     </select>
     <span id="filmAdv" class="validation-error" style="color: red;"></span>
     <br /><br/>
@@ -60,7 +63,7 @@
     <br />
     <br />
 
-    <!-- Epost input -->
+    <!-- E-post input -->
     <label for="epost"
            style="display: inline-block; width: 100px;  margin-right: 10px;">Epost</label>
     <input id="epost" name="epost" type="email"/>
@@ -79,11 +82,11 @@
     <br />
 
 
-    <!-- Alle billetter liste başlığı -->
+    <!-- Oversikt over alle billetter -->
     <h3>Alle billetter</h3>
     <div id="alleBilletter"></div>
 
-    <!-- Slett alle billettene knappen -->
+    <!-- Knapp for å slette alle billettene -->
     <input
             type="button"
             onclick="slettAlleBilletter()"

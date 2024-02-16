@@ -1,7 +1,7 @@
-// Billet listesi için boş array
+// Tomt array for billettlisten
 let billettListe = [];
 
-// Billett ekleme fonksiyonu
+// Funksjon for å legge til billett
 function addBillett() {
     if (checkInput()) {
         let billett = {
@@ -18,14 +18,14 @@ function addBillett() {
     }
 }
 
-// Input alanlarını doğrulama fonksiyonu
+// Funksjon for å validere inputfeltene
 function checkInput() {
     let isValid = true;
 
 
-    // Film seçimi doğrulama
+    // Validering av filmvalg
     let film = document.getElementById("filmNames").value;
-    let filmAdv = document.getElementById("filmAdv"); // Uyarı mesajını göstermek için bir element id'si
+    let filmAdv = document.getElementById("filmAdv");
     if (film === "") {
         filmAdv.innerText = "Vennligst velg en film fra listen";
         filmAdv.style.display = "inline-block";
@@ -34,18 +34,15 @@ function checkInput() {
         filmAdv.style.display = "none";
     }
 
-    // Diğer doğrulamalarınızı burada sürdürebilirsiniz...
-
-
     // Antall validation
     let antall = document.getElementById('antall').value;
     let antallAdv = document.getElementById("antallAdv");
     if (parseInt(antall) < 1 || isNaN(parseInt(antall))) {
         antallAdv.innerText = "Må skrive noe antall";
-        antallAdv.style.display = "inline-block"; // Hata mesajını göster
+        antallAdv.style.display = "inline-block";
         isValid = false;
     } else {
-        antallAdv.style.display = "none"; // Hata mesajını gizle
+        antallAdv.style.display = "none";
     }
 
     // Fornavn validation
@@ -70,31 +67,32 @@ function checkInput() {
         etternavnAdv.style.display = "none";
     }
 
-    // Telefonnr validation
+
     // Telefonnr validation
     let telefonnr = document.getElementById("telefonnr").value;
     let telAdv = document.getElementById("telAdv");
-// Norveç'te telefon numaraları 8 rakamdan oluşur
+
+    // Telefonnumre i Norge består av 8 sifre
     if (!/^\d{8}$/.test(telefonnr)) {
         telAdv.innerText = "Vennligst skriv inn et gyldig telefonnummer med 8 siffer";
-        telAdv.style.display = "inline-block"; // Hata mesajını göster
+        telAdv.style.display = "inline-block";
         isValid = false;
     } else {
-        telAdv.style.display = "none"; // Hata mesajını gizle
+        telAdv.style.display = "none";
     }
 
     // Epost validation
-    // Epost validation
     let epost = document.getElementById("epost").value;
     let epostAdv = document.getElementById("epostAdv");
-// Daha kapsamlı bir e-posta doğrulama regex'i
+
+    // En mer omfattende regex for e-post validering
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(epost)) {
         epostAdv.innerText = "Vennligst skriv inn en gyldig e-postadresse (f.eks. bruker@eksempel.no)";
-        epostAdv.style.display = "inline-block"; // Hata mesajını göster
+        epostAdv.style.display = "inline-block";
         isValid = false;
     } else {
-        epostAdv.style.display = "none"; // Hata mesajını gizle
+        epostAdv.style.display = "none";
     }
 
     return isValid;
@@ -102,26 +100,26 @@ function checkInput() {
 }
 
 
-// Formu sıfırlama fonksiyonu
+// Funksjon for å resette skjemaet
 function resetForm() {
     document.getElementById('billettForm').reset();
-    // Tüm uyarı mesajlarını gizle
+
     let warnings = document.querySelectorAll('.validation-error');
     warnings.forEach(function(warning) {
         warning.style.display = 'none';
     });
 }
 
-// Bilet listesini güncelleme ve gösterme fonksiyonu
+// Funksjon for å oppdatere og vise listen over billetter
 function listBilletter() {
     let alleBilletterDiv = document.getElementById('alleBilletter');
-    alleBilletterDiv.innerHTML = ''; // Mevcut listeyi temizle
+    alleBilletterDiv.innerHTML = '';
     billettListe.forEach(function(billett) {
         alleBilletterDiv.innerHTML += `<p>${billett.film} ${billett.antall} ${billett.fornavn} ${billett.etternavn} ${billett.telefonnr} ${billett.epost}</p>`;
     });
 }
 
-// Tüm biletleri silme fonksiyonu
+// Funksjon for å slette alle billettene
 function slettAlleBilletter() {
     billettListe = [];
     listBilletter();
